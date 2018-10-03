@@ -1,4 +1,4 @@
-package com.company.geoapp.view;
+package com.company.geoapp;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
