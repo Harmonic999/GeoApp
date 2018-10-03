@@ -1,25 +1,33 @@
 package com.company.geoapp.handlers;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public class OwmWeatherLoader implements CityWeatherLoader {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, JSONException {
         CityWeatherLoader loader = new OwmWeatherLoader();
-        System.out.println(loader.getCityWeather("Kiev"));
+        String jsonString = loader.getCityWeather("Kiev");
+        System.out.println(jsonString);
+
+        //JSONObject obj = new JSONObject("{\"name\" : \"John\"}");
+        //String weatherDescription = obj.getJSONObject("weather").getString("description");
+        //System.out.println(weatherDescription);
     }
 
     private OpenWeatherMapService service;
 
     public String getCityWeather(String cityName) throws IOException {
         if (service == null) {
-            Retrofit retrofit = new Retrofit.Builder().baseUrl("api.openweathermap.org/data/2.5/")
+            Retrofit retrofit = new Retrofit.Builder().baseUrl("http://api.openweathermap.org/data/2.5/")
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .build();
             service = retrofit.create(OpenWeatherMapService.class);
@@ -31,7 +39,7 @@ public class OwmWeatherLoader implements CityWeatherLoader {
 
     private interface OpenWeatherMapService {
 
-        @GET("weather?q={cityName}," + KEY)
-        Call<String> getStringCityWeather(@Path("city") String cityName);
+        @GET("weather?" + KEY)
+        Call<String> getStringCityWeather(@Query("q") String cityName);
     }
 }
