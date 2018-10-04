@@ -1,9 +1,12 @@
 package com.company.geoapp;
 
-import com.company.geoapp.model.Weather;
+import com.company.geoapp.model.weather.Weather;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import static org.junit.Assert.*;
 
 public class WeatherTestData {
 
@@ -28,11 +31,26 @@ public class WeatherTestData {
     }
 
     public static void compareWeather(Weather actual, Weather expected) {
-
+        assertEquals(actual, expected);
     }
 
-    public static void compareWeatherList() {
+    public static void compareWeatherList(List<Weather> weathersActual, List<Weather> weathersExpected) {
+        Collections.sort(weathersActual);
+        Collections.sort(weathersExpected);
 
+        for (int i = 0; i < weathersExpected.size(); i++) {
+            compareWeather(weathersActual.get(i), weathersExpected.get(i));
+        }
+    }
+
+    public static void compareWeatherList(List<Weather> weathersActual, Weather... weathersExpected) {
+        Collections.sort(weathersActual);
+        List<Weather> weathersExpectedAsList = Arrays.asList(weathersExpected);
+        Collections.sort(weathersExpectedAsList);
+
+        /*for (int i = 0; i < weathersExpected.size(); i++) {
+            compareWeather(weathersActual.get(i), weathersExpected.get(i));
+        }*/
     }
 
 

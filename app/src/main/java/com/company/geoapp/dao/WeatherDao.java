@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.company.geoapp.model.Weather;
+import com.company.geoapp.model.weather.Weather;
 
 import java.util.List;
 

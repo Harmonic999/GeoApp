@@ -7,7 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.company.geoapp.dao.AppDatabase;
 import com.company.geoapp.dao.WeatherDao;
-import com.company.geoapp.model.Weather;
+import com.company.geoapp.model.weather.Weather;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 import static com.company.geoapp.WeatherTestData.*;
-import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
 public class WeatherDatabaseTest {
@@ -37,14 +36,18 @@ public class WeatherDatabaseTest {
     @Test
     public void insertTest() {
         weatherDao.insert(WEATHER_4);
+        List<Weather> actualWeathers = weatherDao.getAll();
+        compareWeatherList(actualWeathers, testWeatherList);
+    }
+
+    @Test
+    public void deleteTest() {
+        weatherDao.delete(WEATHER_1);
 
     }
 
     @Test
     public void getWeatherByLocationTest() {
-
-
-        weatherDao.insert(WEATHER_1);
 
     }
 

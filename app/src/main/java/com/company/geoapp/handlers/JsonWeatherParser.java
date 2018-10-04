@@ -1,6 +1,6 @@
 package com.company.geoapp.handlers;
 
-import com.company.geoapp.model.Weather;
+import com.company.geoapp.model.weather.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;

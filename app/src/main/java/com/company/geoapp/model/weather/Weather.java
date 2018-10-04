@@ -1,4 +1,4 @@
-package com.company.geoapp.model;
+package com.company.geoapp.model.weather;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
