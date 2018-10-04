@@ -15,8 +15,7 @@ import android.view.MenuItem;
 
 import com.company.geoapp.R;
 
-public class CityWeatherActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class CityWeatherActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
 

@@ -1,4 +1,4 @@
-package com.company.geoapp.model.weather;
+package com.company.geoapp.delete;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -14,6 +14,7 @@ public class Weather implements Comparable<Weather> {
     private Integer id;
 
     @ColumnInfo(name = "location")
+
     private String location; // City name
 
     @ColumnInfo(name = "generalDescription")

@@ -6,29 +6,27 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.company.geoapp.model.weather.Weather;
-
 import java.util.List;
 
 @Dao
 public interface WeatherDao {
 
-    @Query("SELECT * FROM weather ORDER BY location ASC")
-    List<Weather> getAll();
+    @Query("SELECT * FROM weathers")
+    List<WeatherDbRepr> getAll();
 
-    @Query("SELECT * FROM weather WHERE location LIKE :location LIMIT 1")
-    Weather getByLocation(String location);
+    @Query("SELECT * FROM weathers WHERE location LIKE :location LIMIT 1")
+    WeatherDbRepr getByLocation(String location);
 
     @Insert
-    void insert(Weather weather);
+    void insert(WeatherDbRepr weather);
 
     @Update
-    void update(Weather weather);
+    void update(WeatherDbRepr weather);
+
+    @Query("DELETE FROM weathers WHERE location LIKE :location")
+    void deleteByLocation(String location);
 
     @Delete
-    void delete(Weather weather);
-
-    @Delete
-    void deleteAll(Weather... weathers);
+    void deleteAll(WeatherDbRepr... weathers);
 
 }

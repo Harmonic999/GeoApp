@@ -1,17 +1,25 @@
 package com.company.geoapp.handlers;
 
-import com.company.geoapp.model.weather.Weather;
+import com.google.gson.Gson;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.lang.reflect.Type;
 
-class JsonWeatherParser {
+public class JsonHandler {
 
-    private JsonWeatherParser() {
+    private JsonHandler() {
     }
 
-    static Weather parseJsonResponseToObj(String responseJsonObj) {
+    public static <T> String parseToJson(T t) {
+        Gson gson = new Gson();
+        return gson.toJson(t);
+    }
+
+    public static <T> T parseFromJson(String json, Class clazz) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, (Type) clazz);
+    }
+
+    /*public static Weather parseJsonResponseToObj(String responseJsonObj) {
         Weather w = null;
         try {
             JSONObject obj = new JSONObject(responseJsonObj);
@@ -25,9 +33,9 @@ class JsonWeatherParser {
         }
 
         return w;
-    }
+    }*/
 
-    private static String getLocation(JSONObject obj) {
+    /*private static String getLocation(JSONObject obj) {
         return obj.optString("name");
     }
 
@@ -41,5 +49,5 @@ class JsonWeatherParser {
         JSONObject main = obj.getJSONObject("main");
         double kelvinTemp = main.getDouble("temp");
         return kelvinTemp - 273; //перевод в градусы Цельсия
-    }
+    }*/
 }

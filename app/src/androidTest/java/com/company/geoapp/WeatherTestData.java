@@ -1,57 +1,61 @@
 package com.company.geoapp;
 
-import com.company.geoapp.model.weather.Weather;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import static org.junit.Assert.*;
+import com.company.geoapp.dao.WeatherDbRepr;
 
 public class WeatherTestData {
 
-    public static final Weather WEATHER_1;
-    public static final Weather WEATHER_2;
-    public static final Weather WEATHER_3;
-    public static final Weather WEATHER_4;
+    public static final WeatherDbRepr WEATHER_1;
+    public static final WeatherDbRepr WEATHER_2;
+    public static final WeatherDbRepr WEATHER_3;
 
-    public static final List<Weather> testWeatherList;
 
     static {
-        WEATHER_1 = new Weather("Kiev", "broken clouds", 12.5);
-        WEATHER_2 = new Weather("Kharkiv", "broken clouds", 14.1);
-        WEATHER_3 = new Weather("London", "broken clouds", 17.3);
-        WEATHER_4 = new Weather("Moscow", "broken clouds", 9.4);
 
-        testWeatherList = new ArrayList<>();
-        testWeatherList.add(WEATHER_1);
-        testWeatherList.add(WEATHER_2);
-        testWeatherList.add(WEATHER_3);
-        testWeatherList.add(WEATHER_4);
+        WEATHER_1 = new WeatherDbRepr("London", "{\n" +
+                "    \"coord\": {\n" +
+                "        \"lon\": 30.52,\n" +
+                "        \"lat\": 50.43\n" +
+                "    },\n" +
+                "    \"weather\": [\n" +
+                "        {\n" +
+                "            \"id\": 802,\n" +
+                "            \"main\": \"Clouds\",\n" +
+                "            \"description\": \"scattered clouds\",\n" +
+                "            \"icon\": \"03d\"\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"base\": \"stations\",\n" +
+                "    \"main\": {\n" +
+                "        \"temp\": 284.15,\n" +
+                "        \"pressure\": 1016,\n" +
+                "        \"humidity\": 53,\n" +
+                "        \"temp_min\": 284.15,\n" +
+                "        \"temp_max\": 284.15\n" +
+                "    },\n" +
+                "    \"visibility\": 10000,\n" +
+                "    \"wind\": {\n" +
+                "        \"speed\": 7,\n" +
+                "        \"deg\": 290,\n" +
+                "        \"gust\": 12\n" +
+                "    },\n" +
+                "    \"clouds\": {\n" +
+                "        \"all\": 40\n" +
+                "    },\n" +
+                "    \"dt\": 1538658000,\n" +
+                "    \"sys\": {\n" +
+                "        \"type\": 1,\n" +
+                "        \"id\": 7348,\n" +
+                "        \"message\": 0.0023,\n" +
+                "        \"country\": \"UA\",\n" +
+                "        \"sunrise\": 1538625798,\n" +
+                "        \"sunset\": 1538666929\n" +
+                "    },\n" +
+                "    \"id\": 703448,\n" +
+                "    \"name\": \"London\",\n" +
+                "    \"cod\": 200\n" +
+                "}");
+
+        WEATHER_2 = new WeatherDbRepr("Paris", "mock");
+        WEATHER_3 = new WeatherDbRepr("Kharkiv", "mock");
     }
-
-    public static void compareWeather(Weather actual, Weather expected) {
-        assertEquals(actual, expected);
-    }
-
-    public static void compareWeatherList(List<Weather> weathersActual, List<Weather> weathersExpected) {
-        Collections.sort(weathersActual);
-        Collections.sort(weathersExpected);
-
-        for (int i = 0; i < weathersExpected.size(); i++) {
-            compareWeather(weathersActual.get(i), weathersExpected.get(i));
-        }
-    }
-
-    public static void compareWeatherList(List<Weather> weathersActual, Weather... weathersExpected) {
-        Collections.sort(weathersActual);
-        List<Weather> weathersExpectedAsList = Arrays.asList(weathersExpected);
-        Collections.sort(weathersExpectedAsList);
-
-        /*for (int i = 0; i < weathersExpected.size(); i++) {
-            compareWeather(weathersActual.get(i), weathersExpected.get(i));
-        }*/
-    }
-
-
 }

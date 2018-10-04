@@ -1,6 +1,6 @@
-package com.company.geoapp.handlers;
+package com.company.geoapp.delete;
 
-import com.company.geoapp.model.weather.Weather;
+import com.company.geoapp.handlers.JsonHandler;
 
 import java.io.IOException;
 
@@ -32,7 +32,8 @@ public class OwmWeatherLoader implements WeatherInfoLoader {
     @Override
     public Weather getWeatherForDefinedCity(String cityName) throws IOException {
         String responseJsonObj = service.getStringCityWeather(cityName).execute().body();
-        return JsonWeatherParser.parseJsonResponseToObj(responseJsonObj);
+        return null;
+        //return JsonHandler.parseJsonResponseToObj(responseJsonObj);
     }
 
 }
