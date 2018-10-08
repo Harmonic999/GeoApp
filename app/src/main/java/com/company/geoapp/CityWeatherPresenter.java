@@ -81,7 +81,11 @@ public class CityWeatherPresenter extends MvpBasePresenter<CityWeatherView> impl
     private void passToView(WeatherModel model) {
         if (isViewAttached()) {
             Logger.infoLog("transferring model to view");
-            getView().showWeatherInfo(model.name, model.weather.get(0).description, model.main.temp);
+            getView().showWeatherInfo(model.name,
+                    model.weather.get(0).description,
+                    model.main.temp,
+                    model.sys.sunrise,
+                    model.sys.sunset);
         }
     }
 

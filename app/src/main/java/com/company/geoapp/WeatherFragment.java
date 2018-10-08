@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.company.geoapp.handlers.Logger;
+import com.company.geoapp.handlers.TimeUtils;
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
 
 public class WeatherFragment extends MvpFragment<CityWeatherView, CityWeatherPresenter> implements CityWeatherView {
@@ -38,7 +40,9 @@ public class WeatherFragment extends MvpFragment<CityWeatherView, CityWeatherPre
     }
 
     @Override
-    public void showWeatherInfo(String location, String description, double temperature) {
+    public void showWeatherInfo(String location, String description, double temperature, long sunrise, long sunset) {
+        Logger.infoLog("sunrise=" + TimeUtils.unixTimestampToLocalDateTime(sunrise));
+        Logger.infoLog("sunset=" + TimeUtils.unixTimestampToLocalDateTime(sunset));
         locationTxt.setText(location);
         descriptionTxt.setText(description);
         temperatureTxt.setText(String.valueOf(temperature));
