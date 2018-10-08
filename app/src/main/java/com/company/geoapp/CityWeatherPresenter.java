@@ -34,14 +34,6 @@ public class CityWeatherPresenter extends MvpBasePresenter<CityWeatherView> impl
         new SaveToDbAndPassToViewTask(model).execute();
     }
 
-    private WeatherDbRepr convertToDbRepresentation(WeatherModel model) {
-        return new WeatherDbRepr(model.name, JsonHandler.parseToJson(model));
-    }
-
-    private WeatherModel convertFromDbRepresentation(WeatherDbRepr databaseModel) {
-        return JsonHandler.parseFromJson(databaseModel.getJson_weather(), WeatherModel.class);
-    }
-
     private class SaveToDbAndPassToViewTask extends AsyncTask<Void, Void, WeatherModel> {
 
         final WeatherModel model;
@@ -74,4 +66,11 @@ public class CityWeatherPresenter extends MvpBasePresenter<CityWeatherView> impl
         }
     }
 
+    private WeatherDbRepr convertToDbRepresentation(WeatherModel model) {
+        return new WeatherDbRepr(model.name, JsonHandler.parseToJson(model));
+    }
+
+    private WeatherModel convertFromDbRepresentation(WeatherDbRepr databaseModel) {
+        return JsonHandler.parseFromJson(databaseModel.getJson_weather(), WeatherModel.class);
+    }
 }

@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class CityWeatherActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
 
