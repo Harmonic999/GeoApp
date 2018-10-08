@@ -32,7 +32,7 @@ public class Owm {
         call.enqueue(new Callback<WeatherModel>() {
             @Override
             public void onResponse(Call<WeatherModel> call, Response<WeatherModel> response) {
-                if (listener != null) Owm.listener.handleResponse(response);
+                if (listener != null) Owm.listener.handleSuccessfulResponse(response);
             }
 
             @Override

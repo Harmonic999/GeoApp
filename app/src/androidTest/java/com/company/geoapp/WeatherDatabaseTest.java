@@ -48,7 +48,6 @@ public class WeatherDatabaseTest {
     @Test
     public void deleteByLocationTest() {
         weatherDao.deleteByLocation("London");
-        weatherDao.getAll().forEach(weatherDbRepr -> Logger.infoLog(weatherDbRepr.getLocation()));
     }
 
     @Test

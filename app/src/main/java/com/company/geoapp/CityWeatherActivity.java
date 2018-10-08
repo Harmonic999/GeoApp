@@ -2,30 +2,21 @@ package com.company.geoapp;
 
 import android.os.Bundle;
 
-import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import com.company.geoapp.handlers.Logger;
-import com.hannesdorfmann.mosby.mvp.MvpActivity;
-
-import butterknife.OnClick;
 
 
-public class CityWeatherActivity extends MvpActivity<CityWeatherView, CityWeatherPresenter> implements CityWeatherView {
+public class CityWeatherActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
-    private TextView locationTextView;
-    private TextView descriptionTextView;
-    private TextView temperatureTextView;
-    private EditText textInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,20 +55,50 @@ public class CityWeatherActivity extends MvpActivity<CityWeatherView, CityWeathe
         return super.onOptionsItemSelected(item);
     }
 
-    @NonNull
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public CityWeatherPresenter createPresenter() {
-        return new CityWeatherPresenter();
-    }
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
 
-    @OnClick(R.id.showWeatherBtn)
-    public void submit() {
-        presenter.handleUserInput(textInput.getText().toString());
-    }
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment fragment = null;
+        Bundle arguments = new Bundle();
 
-    @Override
-    public void showWeatherInfo(String location, String description, String temperature) {
+        switch (id) {
+            case R.id.nav_main:
+                fragment = new MainPageFragment();
+                break;
 
+            case R.id.nav_kiev:
+                fragment = new WeatherFragment();
+                arguments.putString("cityName", "kiev");
+                break;
+
+            case R.id.nav_moscow:
+                fragment = new WeatherFragment();
+                arguments.putString("cityName", "moscow");
+                break;
+
+            case R.id.nav_paris:
+                fragment = new WeatherFragment();
+                arguments.putString("cityName", "paris");
+                break;
+
+            case R.id.nav_london:
+                fragment = new WeatherFragment();
+                arguments.putString("cityName", "london");
+                break;
+        }
+
+        if (fragment != null) {
+            fragment.setArguments(arguments);
+            ft.replace(R.id.fragments_container, fragment);
+            ft.commit();
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     private void initializeViews() {
@@ -90,12 +111,7 @@ public class CityWeatherActivity extends MvpActivity<CityWeatherView, CityWeathe
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        locationTextView = findViewById(R.id.locationTextView);
-        descriptionTextView = findViewById(R.id.descriptionTextView);
-        temperatureTextView = findViewById(R.id.temperatureTextView);
-        textInput = findViewById(R.id.textInput);
-
-        //NavigationView navigationView = findViewById(R.id.nav_view);
-        //navigationView.setNavigationItemSelectedListener(this);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 }

@@ -4,6 +4,6 @@ import retrofit2.Response;
 
 public interface OnResponseSuccessListener<T> {
 
-    void handleResponse(Response<T> response);
+    void handleSuccessfulResponse(Response<T> response);
 
 }
