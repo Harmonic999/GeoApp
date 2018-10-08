@@ -1,5 +1,6 @@
 package com.company.geoapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -42,8 +43,25 @@ public class CityWeatherPresenter extends MvpBasePresenter<CityWeatherView> impl
             this.model = model;
         }
 
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(context,
+                    "Loading data from web",
+                    "wait...",
+                    true);
+        }
+
         @Override
         protected WeatherModel doInBackground(Void... voids) {
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             WeatherDao dao = AppDatabase
                     .getInstance(context)
                     .weatherDao();
@@ -56,6 +74,7 @@ public class CityWeatherPresenter extends MvpBasePresenter<CityWeatherView> impl
         @Override
         protected void onPostExecute(WeatherModel model) {
             passToView(model);
+            progressDialog.dismiss();
         }
     }
 
