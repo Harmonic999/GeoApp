@@ -1,23 +1,31 @@
 package com.company.geoapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
-import android.support.design.widget.NavigationView;
+
+import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import com.company.geoapp.R;
+import com.company.geoapp.handlers.Logger;
+import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
-public class CityWeatherActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import butterknife.OnClick;
+
+
+public class CityWeatherActivity extends MvpActivity<CityWeatherView, CityWeatherPresenter> implements CityWeatherView {
 
     private DrawerLayout drawer;
+    private TextView locationTextView;
+    private TextView descriptionTextView;
+    private TextView temperatureTextView;
+    private EditText textInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +64,20 @@ public class CityWeatherActivity extends AppCompatActivity implements Navigation
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+    @NonNull
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+    public CityWeatherPresenter createPresenter() {
+        return new CityWeatherPresenter();
+    }
 
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+    @OnClick(R.id.showWeatherBtn)
+    public void submit() {
+        presenter.handleUserInput(textInput.getText().toString());
+    }
+
+    @Override
+    public void showWeatherInfo(String location, String description, String temperature) {
+
     }
 
     private void initializeViews() {
@@ -76,8 +90,12 @@ public class CityWeatherActivity extends AppCompatActivity implements Navigation
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
+        locationTextView = findViewById(R.id.locationTextView);
+        descriptionTextView = findViewById(R.id.descriptionTextView);
+        temperatureTextView = findViewById(R.id.temperatureTextView);
+        textInput = findViewById(R.id.textInput);
 
+        //NavigationView navigationView = findViewById(R.id.nav_view);
+        //navigationView.setNavigationItemSelectedListener(this);
+    }
 }

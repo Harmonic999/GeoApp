@@ -1,7 +1,6 @@
 package com.company.geoapp.dao;
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
@@ -25,8 +24,5 @@ public interface WeatherDao {
 
     @Query("DELETE FROM weathers WHERE location LIKE :location")
     void deleteByLocation(String location);
-
-    @Delete
-    void deleteAll(WeatherDbRepr... weathers);
 
 }

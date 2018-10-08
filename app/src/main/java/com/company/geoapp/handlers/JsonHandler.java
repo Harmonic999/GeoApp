@@ -10,13 +10,11 @@ public class JsonHandler {
     }
 
     public static <T> String parseToJson(T t) {
-        Gson gson = new Gson();
-        return gson.toJson(t);
+        return new Gson().toJson(t);
     }
 
     public static <T> T parseFromJson(String json, Class clazz) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, (Type) clazz);
+        return new Gson().fromJson(json, (Type) clazz);
     }
 
     /*public static Weather parseJsonResponseToObj(String responseJsonObj) {

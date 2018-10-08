@@ -8,9 +8,9 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "weathers")
 public class WeatherDbRepr {
 
+    @NonNull
     @PrimaryKey
     @ColumnInfo(name = "location")
-    @NonNull
     private final String location;
 
     @ColumnInfo(name = "json_weather")
