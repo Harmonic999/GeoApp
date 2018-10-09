@@ -9,7 +9,7 @@ public class TimeUtils {
     private TimeUtils() {
     }
 
-    public static String unixTimestampToLocalDateTime(long timestamp) {
+    public static String getStringDateFromUnixTimestamp(long timestamp) {
         Date date = new Date(timestamp * 1000L);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
         sdf.setTimeZone(TimeZone.getDefault());

@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 arguments.putString("cityName", "kiev");
                 break;
 
-            case R.id.nav_moscow:
+            case R.id.nav_dublin:
                 fragment = new WeatherFragment();
-                arguments.putString("cityName", "moscow");
+                arguments.putString("cityName", "dublin");
                 break;
 
             case R.id.nav_paris:
@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (fragment != null) {
             fragment.setArguments(arguments);
             ft.replace(R.id.fragments_container, fragment);
+            ft.addToBackStack(null);
             ft.commit();
         }
 

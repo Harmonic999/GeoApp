@@ -11,8 +11,8 @@
             android:id="@+id/nav_kiev"
             android:title="Kiev" />
         <item
-            android:id="@+id/nav_moscow"
-            android:title="Moscow" />
+            android:id="@+id/nav_dublin"
+            android:title="Dublin" />
         <item
             android:id="@+id/nav_paris"
             android:title="Paris" />

@@ -55,13 +55,6 @@ public class CityWeatherPresenter extends MvpBasePresenter<CityWeatherView> impl
 
         @Override
         protected WeatherModel doInBackground(Void... voids) {
-
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
             WeatherDao dao = AppDatabase
                     .getInstance(context)
                     .weatherDao();

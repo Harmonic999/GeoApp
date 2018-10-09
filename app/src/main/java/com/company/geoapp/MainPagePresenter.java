@@ -58,12 +58,6 @@ public class MainPagePresenter extends MvpBasePresenter<MainPageView> {
         protected Bitmap doInBackground(Void... voids) {
             int randomValue = (int) (Math.random() * iconsUrl.length);
 
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
             FutureTarget<Bitmap> futureBitmap = Glide
                     .with(context)
                     .asBitmap()

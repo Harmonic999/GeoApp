@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.company.geoapp.handlers.Logger;
-import com.company.geoapp.handlers.TimeUtils;
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
+
+import static com.company.geoapp.handlers.TemperatureUtils.*;
+import static com.company.geoapp.handlers.TimeUtils.*;
 
 public class WeatherFragment extends MvpFragment<CityWeatherView, CityWeatherPresenter> implements CityWeatherView {
 
@@ -41,11 +43,14 @@ public class WeatherFragment extends MvpFragment<CityWeatherView, CityWeatherPre
 
     @Override
     public void showWeatherInfo(String location, String description, double temperature, long sunrise, long sunset) {
-        Logger.infoLog("sunrise=" + TimeUtils.unixTimestampToLocalDateTime(sunrise));
-        Logger.infoLog("sunset=" + TimeUtils.unixTimestampToLocalDateTime(sunset));
+        //Logger.infoLog("sunrise=" + getStringDateFromUnixTimestamp(sunrise));
+        //Logger.infoLog("sunset=" + getStringDateFromUnixTimestamp(sunset));
+
         locationTxt.setText(location);
-        descriptionTxt.setText(description);
-        temperatureTxt.setText(String.valueOf(temperature));
+
+        descriptionTxt.setText(description.substring(0, 1).toUpperCase() + description.substring(1)); //first letter to Upper Case
+
+        temperatureTxt.setText(temperatureAsString(kelvinToCelsius(temperature))); // kelvin to celsius
     }
 
     private void initViews(View view) {
