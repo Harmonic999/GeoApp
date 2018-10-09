@@ -13,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.company.geoapp.fragments.MainPageFragment;
+import com.company.geoapp.fragments.WeatherFragment;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

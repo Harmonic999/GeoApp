@@ -1,4 +1,4 @@
-package com.company.geoapp;
+package com.company.geoapp.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,11 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.company.geoapp.handlers.Logger;
+import com.company.geoapp.interfaces.CityWeatherView;
+import com.company.geoapp.R;
+import com.company.geoapp.presenters.CityWeatherPresenter;
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
 
 import static com.company.geoapp.handlers.TemperatureUtils.*;
-import static com.company.geoapp.handlers.TimeUtils.*;
 
 public class WeatherFragment extends MvpFragment<CityWeatherView, CityWeatherPresenter> implements CityWeatherView {
 

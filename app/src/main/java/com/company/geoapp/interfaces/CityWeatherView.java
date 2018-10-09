@@ -1,4 +1,4 @@
-package com.company.geoapp;
+package com.company.geoapp.interfaces;
 
 import com.hannesdorfmann.mosby.mvp.MvpView;
 

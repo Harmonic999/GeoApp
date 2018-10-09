@@ -1,4 +1,4 @@
-package com.company.geoapp;
+package com.company.geoapp.interfaces;
 
 import android.graphics.Bitmap;
 
@@ -8,4 +8,5 @@ public interface MainPageView extends MvpView {
 
     void showRandomIcon(Bitmap imageBitmap);
 
+    void showPicassoIcon(Bitmap imageBitmap);
 }

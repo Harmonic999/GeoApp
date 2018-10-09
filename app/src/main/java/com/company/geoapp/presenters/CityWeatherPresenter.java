@@ -1,9 +1,10 @@
-package com.company.geoapp;
+package com.company.geoapp.presenters;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.company.geoapp.interfaces.CityWeatherView;
 import com.company.geoapp.dao.AppDatabase;
 import com.company.geoapp.dao.WeatherDao;
 import com.company.geoapp.dao.WeatherDbRepr;
@@ -60,8 +61,8 @@ public class CityWeatherPresenter extends MvpBasePresenter<CityWeatherView> impl
                     .weatherDao();
             Logger.infoLog("saving weather info to database");
             dao.insert(convertToDbRepresentation(model));
-            dao.getByLocation(model.name);
-            return convertFromDbRepresentation(dao.getByLocation(model.name));
+            WeatherDbRepr weatherDbRepr = dao.getByLocation(model.name);
+            return convertFromDbRepresentation(weatherDbRepr);
         }
 
         @Override
