@@ -12,7 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
 
+import com.company.geoapp.fragments.CustomViewFragment;
 import com.company.geoapp.fragments.MainPageFragment;
 import com.company.geoapp.fragments.WeatherFragment;
 
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_weather);
         initializeViews();
+
     }
 
     @Override
@@ -56,6 +60,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getActionMasked();
+
+        switch (action) {
+
+        }
+
+        return super.onTouchEvent(event);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -89,8 +104,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_london:
-                fragment = new WeatherFragment();
-                arguments.putString("cityName", "london");
+                //fragment = new WeatherFragment();
+                fragment = new CustomViewFragment();
+                //arguments.putString("cityName", "london");
                 break;
         }
 
@@ -115,7 +131,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        FrameLayout frameLayout = findViewById(R.id.fragments_container);
+        frameLayout.setOnTouchListener(new OnSwipeTouchListener(this));
+
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+
 }

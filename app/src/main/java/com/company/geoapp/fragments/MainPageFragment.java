@@ -18,6 +18,7 @@ import com.hannesdorfmann.mosby.mvp.MvpFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class MainPageFragment extends MvpFragment<MainPageView, MainPagePresenter> implements MainPageView {
 
@@ -65,17 +66,13 @@ public class MainPageFragment extends MvpFragment<MainPageView, MainPagePresente
     }
 
     @Override
-    public void showPicassoIcon(Bitmap imageBitmap) {
-        //picassoImage.setImageBitmap(imageBitmap);
-    }
-
-    @Override
     public void onStop() {
         EventBus.getDefault().unregister(this);
         super.onStop();
     }
 
-    @Subscribe
+    @SuppressWarnings("all")
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPicassoViewLoadedEvent(PicassoViewLoadedEvent event) {
         Logger.infoLog("event received");
         picassoImage.setImageBitmap(event.getBitmap());

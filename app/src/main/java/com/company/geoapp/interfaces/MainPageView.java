@@ -8,5 +8,4 @@ public interface MainPageView extends MvpView {
 
     void showRandomIcon(Bitmap imageBitmap);
 
-    void showPicassoIcon(Bitmap imageBitmap);
 }

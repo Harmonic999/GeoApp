@@ -4,14 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.os.Handler;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestOptions;
+import com.company.geoapp.handlers.ImageViewUtils;
 import com.company.geoapp.handlers.green_bus_events.PicassoViewLoadedEvent;
 import com.company.geoapp.interfaces.MainPageView;
-import com.company.geoapp.handlers.ImageViewUtils;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.squareup.picasso.Picasso;
 
@@ -53,20 +52,14 @@ public class MainPagePresenter extends MvpBasePresenter<MainPageView> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            EventBus.getDefault().post(new PicassoViewLoadedEvent(bitmap));
-            //passPicassoImageToView(ImageViewUtils.cropCircle(bitmap));
+            EventBus.getDefault().post(new PicassoViewLoadedEvent(ImageViewUtils.cropCircle(bitmap)));
+
         }).start();
     }
 
     private void passImageToView(Bitmap imageBitmap) {
         if (isViewAttached()) {
             getView().showRandomIcon(imageBitmap);
-        }
-    }
-
-    private void passPicassoImageToView(Bitmap imageBitmap) {
-        if (isViewAttached()) {
-            new Handler(context.getMainLooper()).post(() -> getView().showPicassoIcon(imageBitmap));
         }
     }
 
